@@ -56,14 +56,11 @@ $(document).ready(function () {
   $(".btn").on("click", function () {
     let userChosenColor;
     userChosenColor = $(this).attr("id");
-    $(this).addClass("pressed");
-    setTimeout(() => {
-      $(this).removeClass("pressed");
-    }, 200);
     userClickedPattern.push(userChosenColor);
     console.log(userClickedPattern);
     colorSound(userChosenColor);
   });
+
 
   // checks and calls the tfunction()
   $("#checkColor").on("click", function () {
@@ -80,11 +77,11 @@ $(document).ready(function () {
 
   // will empty colors pushed in gamepattern and userClickedPattern array
   $("#restart").on("click", function () {
-    for (let i = 0; i < gamePattern.length; i++) {
+    for (let i = gamePattern.length; i >=0; i--) {
       gamePattern.pop();
     }
 
-    for (let i = 0; i < userClickedPattern.length; i++) {
+    for (let i = userClickedPattern.length; i >= 0 ; i--) {
       userClickedPattern.pop();
     }
     alert("Game Restarted");
@@ -126,6 +123,7 @@ $(document).ready(function () {
     console.log(gamePattern);
   }
 
+  // Function to generate repective color sound //
   function colorSound(randomChosenColor) {
     // Using swith case to play respected color sound
     let colorSound;
